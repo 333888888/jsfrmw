@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>书城特效</title>
+<style type="text/css">
+	*{
+		margin:0px;
+		padding:0px;
+		border:0px;
+		list-style:none;
+	}
+	ul{
+		width:250px;
+		margin:100px auto 0px;
+		border:1px solid red;
+		font-size:12px;
+		color:#222;
+		text-indent:2em;
+	}
+	ul > li{
+		padding:10px 0px;
+		border-bottom:1px solid #ccc;
+		cursor:pointer;
+	}
+	ul >li > img{
+		display:none;
+	}
+</style>
+<script src="jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//$('li').mouseover(function(e){
+			//$(this).children('p').hide();//第1.1种方式
+			//$(this).children('img').show();//第1.1种方式
+			//$(this).children('p').hide().parent().children('img').show();	//第1.2种方式
+			//$(this).children().toggle();//第1.3种方式
+		//})
+		//$('li').mouseout(function(e){
+			//$(this).children('p').show();//第1.1种方式
+			//$(this).children('img').hide();//第1.1种方式
+			//$(this).children('p').show().parent().children('img').hide();//第1.2种方式		
+			//$(this).children().toggle();//第1.3种方式
+		//})
+		/*$('li').mouseover(function(e){
+			$(this).children().toggle();//第2.1种方式
+		}).mouseout(function(e){	
+			$(this).children().toggle();//第2.1种方式
+		})*/
+		$('li').hover(function(e){
+ 			$(this).children().toggle();
+		})
+	})
+</script>
+</head>
+
+<body>
+	<ul>
+		<li>
+			<p>漆黑的房子</p>
+			<img src="./images/img.jpg" width="220" height="103" alt="书本006" />
+		</li>
+		<li>
+			<p>漆黑的房子</p>
+			<img src="./images/img.jpg" width="220" height="103" alt="书本006" />
+		</li>
+		<li>
+			<p>漆黑的房子</p>
+			<img src="./images/img.jpg" width="220" height="103" alt="书本006" />
+		</li>
+		<li>
+			<p>漆黑的房子</p>
+			<img src="./images/img.jpg" width="220" height="103" alt="书本006" />
+		</li>
+		<li>
+			<p>漆黑的房子</p>
+			<img src="./images/img.jpg" width="220" height="103" alt="书本006" />
+		</li>
+		<li>
+			<p>漆黑的房子</p>
+			<img src="./images/img.jpg" width="220" height="103" alt="书本006" />
+		</li>
+		<li>
+			<p>漆黑的房子</p>
+			<img src="./images/img.jpg" width="220" height="103" alt="书本006" />
+		</li>
+	</ul>
+		
+		
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>轮播焦点图</title>
+<style type="text/css">
+    /*通配符选择器 选择页面所有元素 内边距和外边距都设置为0*/
+	*{margin:0px;padding:0px;}
+	/*自主选择标签进行初始化*/
+	body,p,dl,dd,h1,h2,h3,h4,h5,h6{margin:0px;}
+	ul,ol{margin:0px;padding:0px;list-style:none;}
+	a{color:#000;text-decoration:none;}
+	img{border:none;}
+	body{
+        background-color:#ccc;
+    }
+    ul{
+	  position:relative;
+      width:520px;
+	  height:280px;
+      border:1px solid #fff;
+      margin:10px auto 0px;
+	  padding:4px;
+      text-align:center;
+      vertical-align:middle;
+      font-size:0px;
+	  overflow:hidden;
+    }
+	ul >li:first-child>div{
+	   position:absolute;
+	   width:2600px;
+	   left:0px;
+    }
+	ul >li{
+	  position:absolute;
+	}
+	ul >li:first-child{
+	    width:520px;
+	    height:280px;
+	    overflow:hidden;
+		background-image:url("images/taobao/01.jpg");
+	}
+	ul > li:last-child{
+	   position:absolute;
+	   display:inline-block;
+	   right:20px;
+	   bottom:10px;
+	}
+	ul > li >i{
+        display:inline-block;
+		font-size:14px;
+		width:1.4em;
+		height:1.2em; 
+		border-radius:50%;  
+		text-align:center;
+		vertical-align:middle;
+		box-shadow:0px 0px 3px 1px  #999 inset;
+	}
+	.ichosed{
+        font-size:20px;
+		width:1.4em;
+	    height:1.2em;
+	    background-color:rgba(200,200,200,0.4);
+		box-shadow:0px 0px 3px 1px  #999 inset;
+		cursor:pointer;
+	}
+</style>
+<script src="jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+	     var num   = 0 ;
+		 var timer = null; 
+		 //自动播放
+	     var autoPlay =function(){
+		      clearInterval(timer);
+		      timer=setInterval(function(){
+		       num++;
+			   //这个部分是利用背景图片 消除整个轮播图自动往回拉的效果
+			   if(num>4){ 
+			     num=0;
+				 //520宽度可以使用变量$('img').eq(num).width()取代
+				 $('img').hide().parent('div').animate({left:-520});
+				 //$('img').hide().eq(0).fadeIn()
+			   }else{
+			     $('img').fadeIn().parent('div').animate({left:-num*$('img').eq(num).width()});
+			   }
+			   //$('img').eq(num+1).fadeIn().siblings('img').hide();
+			   $('ul>li:last-child>i').eq(num).addClass('ichosed').siblings().removeClass('ichosed');
+		   },1000)
+		 }
+		 autoPlay();
+		 //悬停停止自动播放 一开继续自动播放
+		 $('ul').hover(function(e){
+		   clearInterval(timer);
+		 },function(e){
+		   autoPlay();
+		 });
+		 //悬停小图标手动选择图片
+		 $('li:last-child > i').hover(function(e){
+		  $(this).addClass('ichosed').siblings('i').removeClass('ichosed');
+		  //console.log($('img').eq(0).attr('style'));
+		  //这个部分是利用背景图片 消除整个轮播图往回拉的效果
+		  if($(this).index()==0) {
+		      $('img').hide().parent('div').animate({left:-520});
+		  }else{
+		      $('img').stop().fadeIn().parent('div').animate({left:-$(this).index()*520});
+		  }
+		  num = $(this).index();
+		 })
+	})
+</script>
+</head>
+
+<body>
+  <ul>
+    <li>
+	    <div>
+		  <img src="images/taobao/01.jpg" width="520" height="280" alt="淘宝商品" />
+	      <img src="images/taobao/02.jpg" width="520" height="280" alt="淘宝商品" />
+		  <img src="images/taobao/03.jpg" width="520" height="280" alt="淘宝商品" />
+		  <img src="images/taobao/04.jpg" width="520" height="280" alt="淘宝商品" />
+		  <img src="images/taobao/05.jpg" width="520" height="280" alt="淘宝商品" />
+	    </div>
+	</li>
+    <li>
+	    <i class="ichosed">1</i>
+		<i>2</i>
+		<i>3</i>
+		<i>4</i>
+		<i>5</i>
+	</li>
+  </ul>
+</body>
+</html>

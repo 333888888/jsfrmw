@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>滑动隐藏显示</title>
+<script src="jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('button:eq(0)').click(function(e){
+			$('img').slideUp();
+		});
+		$('button:eq(1)').click(function(e){
+			$('img').slideDown();
+		});
+		$('button:eq(2)').click(function(e){
+			$('img').slideToggle(1000);
+		});
+	})
+</script>
+</head>
+
+<body>
+	<button>滑动隐藏</button>
+	<button>滑动显示</button>
+	<button>滑动切换</button><br />
+	<img src="images/110.jpg" width="210" height="291" alt="大老师" />
+
+</body>
+</html>

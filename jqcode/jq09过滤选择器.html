@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>无标题文档</title>
+<style type="text/css">
+	
+</style>
+<script src="jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('button:eq(0)').click(function(e){
+			$('ul>li:first').css('background-color','red');
+		})
+		$('button:eq(1)').click(function(e){
+			$('ul>li:last').css('background-color','red');
+		})
+		$('button:eq(2)').click(function(e){
+			$('ul>li:not(:eq(1))').css('background-color','red');
+		})
+		$('button:eq(3)').click(function(e){
+			$('ul>li:even').css('background-color','red');
+		})
+		$('button:eq(4)').click(function(e){
+			$('li:odd').css('background-color','red');
+		})
+		$('button:eq(5)').click(function(e){
+			$('li:gt(4)').css('background-color','red');
+		})
+		$('button:eq(6)').click(function(e){
+			$('li:lt(5)').css('background-color','red');
+		})
+		$('button:eq(7)').click(function(e){
+			$('li:eq(4)').css('background-color','red');
+		})
+	})
+</script>
+</head>
+<body>
+	<button>选择第一个li</button>
+	<button>选择最后一个li</button>  	
+	<button>选择所有li排除第二个</button>
+	<button>选择所有索引值为偶数个li</button>
+	<button>选择所有索引值为奇数个li</button>
+	<button>选择大于第5个的li</button>
+	<button>选择小于第5个的li</button>
+	<button>选择等于第5个的li</button>
+	<ul>
+		<li>这是一个li</li>
+		<li>这是一个li</li>
+		<li>这是一个li</li>
+		<li>这是一个li</li>
+		<li>这是一个li</li>
+		<li>这是一个li</li>
+		<li>这是一个li</li>
+		<li>这是一个li</li>
+		<li>这是一个li</li>
+		<li>这是一个li</li>
+	</ul>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>子级删选</title>
+<style type="text/css">
+	
+</style>
+<script src="jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('dl').click(function(e){
+			$(this).children('dd').css('background-color','red');
+		})
+	})
+</script>
+</head>
+
+<body>
+	<dl>
+		<dt>子级选择器</dt>
+		<dd>第一个列表</dd>
+		<dd>第二个列表</dd>
+		<dd>第三个列表</dd>
+		<dd>第四个列表</dd>
+	</dl>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>添加访问超文本和文本</title>
+<script src="jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('button:eq(0)').click(function(e){
+			$('div').html('<h1>标签</h1><p>段落</p>');
+		})
+		$('button:eq(1)').click(function(e){
+			alert($('div').html());
+		})
+		$('button:eq(2)').click(function(e){
+			alert($('div').text());
+		})
+		
+	})
+</script>
+</head>
+
+<body>
+	<button>修改</button>
+	<button>访问超文本</button>
+	<button>访问文本</button>
+	<div></div>
+</body>
+</html>

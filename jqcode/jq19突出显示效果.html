@@ -1,0 +1,61 @@
+<strong></strong><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>突出显示效果</title>
+<style type="text/css">
+  *{
+    margin:0px;
+    padding:0px;
+    list-style:none;
+	
+   }
+body{
+  background-color:#000000;
+}
+ul{
+  width:616px;
+  border: 1px solid #fff;
+  margin:10px auto 0px;
+  text-align:center;
+  vertical-align:middle;
+  font-size:0px;
+}
+ul > li{
+  margin:4px 0px;
+}
+ul > li>img{
+  padding:0px 2px;
+}
+</style>
+<script src="jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+	    $('ul').mouseleave(function(e){
+		    $(this).children().children().fadeTo(0,1);
+		})
+        $('img').hover(function(e){
+		  $(this).fadeTo(100,1).siblings().fadeTo(100,0.2).parent('li').siblings('li').children('img').fadeTo(100,0.2);
+		}).click(function(e){
+		  $(this).stop().slideUp().slideDown();
+		})
+		
+	})
+</script>
+</head>
+
+<body>
+	<ul>
+	  <li>
+	    <img src="images/changdaxi/01.jpg"  height="186" width="200" alt="青衣" />
+		<img src="images/changdaxi/02.jpg"  height="186" width="200" alt="小生" />
+		<img src="images/changdaxi/03.jpg"  height="186" width="200" alt="刀马旦" />
+	  </li>
+	  <li>
+	    <img src="images/changdaxi/04.jpg"  height="186" width="200" alt="老生" />
+		<img src="images/changdaxi/05.jpg"  height="186" width="200" alt="武行" />
+		<img src="images/changdaxi/06.jpg"  height="186" width="200" alt="沙和尚" />
+	  </li>
+	</ul>
+</body>
+</html>

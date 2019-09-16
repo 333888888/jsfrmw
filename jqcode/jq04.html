@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>修改访问</title>
+<script src="jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('button:eq(0)').click(function(e){
+			/*（$('div').css('background-color','red');
+			$('div').css('width','200');
+			$('div').css('height','200');*/
+			//$('div').css({width:'200px',height:'200px',backgroundColor:'red',borderRadius:'5px'});
+			$('div').css({'width':'200px','height':'200px','background-color':'red','border-radius':'5px'});
+		})
+		$('button:eq(1)').click(function(e){
+			alert($('div').css('width'));
+		})
+	})
+</script>
+</head>
+<body>
+	<button>修改</button>
+	<button>访问</button>
+	<div>盒子</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>jq01-190907</title>
+<script src="./jquery/jquery-1.9.1.min.js"></script>
+<style>
+	div{
+		width:200px;
+		height:200px;
+		border:1px solid  #99CC33;
+		background-color: #CC6633;
+	}
+</style>
+<script type="text/javascript">
+	$(function(){
+		$('button').click(function(e){
+			$('div').hide(2000);	
+		})
+	});
+</script>
+<!--
+
+<script type="text/javascript">
+	window.onload=function(){
+		 //取数据
+		 var obtn = document.getElementById('btn');
+		 var obox = document.getElementById('box');
+		 //绑定事件
+		 obtn.onclick= function(){
+		 	obox.style.display ='none';
+		 }
+	}
+</script>
+
+-->
+</head>
+
+<body>
+	<button id="btn">按钮</button>
+	<div id="box">盒子</div>
+</body>
+</html>

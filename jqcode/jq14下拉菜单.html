@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>jq14下拉菜单</title>
+<style type="text/css">
+	*{
+	`	margin:0px;
+		padding:0px;
+		list-style:none;
+	}
+	ol{
+		width:15%;
+		margin:10px auto 0px;
+		color:#FFF;
+		font-size:0px;
+		text-align:center;
+		
+	}
+	ol >li {
+		display:inline-block;
+		padding:0px 4px 0px;
+		vertical-align:top;
+		text-align:center;
+		font-size:14px;
+		background-color: #0066CC;
+	}
+	ol>li >h3{
+		margin:6px 0px 3px;
+		height:1.2em;
+	}
+	ol>li >ul{
+		display:none;
+	}
+	ol> li:hover >ul{
+		display:block;
+	}
+</style>
+<script src="jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+	/*$(function(){
+		$('ol >li').hover(function(e){
+			$(this).children('ul').toggle();
+		})
+	})*/
+</script>
+</head>
+	
+<body>
+	<ol>
+		<li>
+			<h3>一级菜单</h3>
+			<ul>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+			</ul>
+		</li>
+		<li>
+			<h3>一级菜单</h3>
+			<ul>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+			</ul>
+		</li>
+		<li>
+			<h3>一级菜单</h3>
+			<ul>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+				<li>二级菜单</li>
+			</ul>
+		</li>
+	</ol>
+</body>
+</html>
