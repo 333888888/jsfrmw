@@ -1,0 +1,65 @@
+<html lang="en">
+ <head>
+  <!--声明当前网页的编码集：charset=gbk,gb2312(中文编码)，utf8国际编码 -->
+  <meta http-equiv="Content-Type" content="texl/html;charset=utf-8" >
+  <meta name="Generator" content="EditPlus®"><!--使用软件-->
+  <meta name="Author" content=""><!--作者-->
+  <!--网页三要素-->
+  <meta name="Keywords" content=""><!--关键词 英文逗号隔开 31字-->
+  <meta name="Description" content=""><!--描述 百度80字以内 标准76字-->
+  <title>html通用模板</title><!--网页标题-->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-classic/resources/theme-classic-all.css" rel="stylesheet" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/locale/locale-fr.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/locale/locale-ko.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/locale/locale-zh_CN.js"></script>
+  <script type="text/javascript">
+	  Ext.onReady(function() {
+		 var monthArray = Ext.Array.map(Ext.Date.monthNames, function (e) { return [e]; });
+		 var ds = Ext.create('Ext.data.Store', {
+			fields: ['month'],
+			remoteSort: true,
+			pageSize: 6,
+			proxy: {
+			   type: 'memory',
+			   enablePaging: true,
+			   data: monthArray,
+			   reader: {type: 'array'}
+			}
+		 });
+		 Ext.create('Ext.grid.Panel', {
+			renderTo: 'grid',
+			id : 'gridId',
+			width: 600,
+			height: 200,
+			title:'Month Browser',
+			columns:[{
+			   text: 'Month of the year',
+			   dataIndex: 'month',
+			   width: 300
+			}],
+			store: ds,
+			bbar: Ext.create('Ext.toolbar.Paging', {
+			   pageSize: 6,
+			   store: ds,
+			   displayInfo: true
+			})
+		 }); 
+		 Ext.getCmp('gridId').getStore().load();
+	});
+	  
+  </script>
+  <style type="text/css">
+	/*通配符选择器 选择页面所有元素 内边距和外边距都设置为0*/
+	*{margin:0px;padding:0px;}
+	/*自主选择标签进行初始化*/
+	body,p,dl,dd,h1,h2,h3,h4,h5,h6{margin:0px;}
+	ul,ol{margin:0px;padding:0px;list-style:none;}
+	a{color:#000;text-decoration:none;}
+	img{border:none;}
+  </style>
+ </head><!--头部-->
+ <body>
+	<div id="grid" />
+ </body> <!--身体-->
+</html>

@@ -1,0 +1,66 @@
+<!doctype html><!--生成文档类型-->
+<html lang="en">
+ <head>
+  <!--声明当前网页的编码集：charset=gbk,gb2312(中文编码)，utf8国际编码 -->
+  <meta http-equiv="Content-Type" content="texl/html;charset=utf-8" >
+  <meta name="Generator" content="EditPlus®"><!--使用软件-->
+  <meta name="Author" content=""><!--作者-->
+  <!--网页三要素-->
+  <meta name="Keywords" content=""><!--关键词 英文逗号隔开 31字-->
+  <meta name="Description" content=""><!--描述 百度80字以内 标准76字-->
+  <title>html通用模板</title><!--网页标题-->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-gray/resources/theme-gray-all.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/extjs/6.0.0/ext-all.js"></script>
+  <script type="text/javascript">
+	  Ext.define('StudentDataModel', {
+		  extend: 'Ext.data.Model',
+		  fields: [
+		  {name: 'name', mapping : 'name'},
+		  {name: 'age', mapping : 'age'},
+		  {name: 'marks', mapping : 'marks'}
+		  ]
+	  });
+	  //静态存储
+	  Ext.create('Ext.data.Store', {
+		  model: 'StudentDataModel',
+		  data: [
+			 { name : "Asha", age : "16", marks : "90" },
+			 { name : "Vinit", age : "18", marks : "95" },
+			 { name : "Anand", age : "20", marks : "68" },
+			 { name : "Niharika", age : "21", marks : "86" },
+			 { name : "Manali", age : "22", marks : "57" }
+		  ];
+	 });
+	 //服务器代理使用Ajax，Json数据和Rest服务处理来自远程服务器的数据。
+	 Ext.create('Ext.data.Store', {
+	   model: 'StudentDataModel',
+	   proxy : {
+		  type : 'rest',
+		  actionMethods : {
+			 read : 'POST'  // Get or Post type based on requirement
+		  },
+		  url : 'restUrlPathOrJsonFilePath', // here we have to include the rest URL path which fetches data from database or Json file path where the data is stored
+		  reader: {
+			 type : 'json',  // the type of data which is fetched is of JSON type
+			 root : 'data'
+		  },
+	   }
+	});
+  </script>
+  <style type="text/css">
+	/*通配符选择器 选择页面所有元素 内边距和外边距都设置为0*/
+	*{margin:0px;padding:0px;}
+	/*自主选择标签进行初始化*/
+	body,p,dl,dd,h1,h2,h3,h4,h5,h6{margin:0px;}
+	ul,ol{margin:0px;padding:0px;list-style:none;}
+	a{color:#000;text-decoration:none;}
+	img{border:none;}
+  </style>
+ </head><!--头部-->
+ <body>
+      <div id = "tag1">Please click the button to see event listener.</div>
+      <div id = "tag2">The button was clicked and now it is hidden.</div>
+	  <!--  panel will be rendered here -->
+      <div id = 'helloWorldPanel' />   
+ </body> <!--身体-->
+</html>

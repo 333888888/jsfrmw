@@ -1,0 +1,184 @@
+<html lang="en">
+ <head>
+  <!--声明当前网页的编码集：charset=gbk,gb2312(中文编码)，utf8国际编码 -->
+  <meta http-equiv="Content-Type" content="texl/html;charset=utf-8" >
+  <meta name="Generator" content="EditPlus®"><!--使用软件-->
+  <meta name="Author" content=""><!--作者-->
+  <!--网页三要素-->
+  <meta name="Keywords" content=""><!--关键词 英文逗号隔开 31字-->
+  <meta name="Description" content=""><!--描述 百度80字以内 标准76字-->
+  <title>html通用模板</title><!--网页标题-->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-classic/resources/theme-classic-all.css" rel="stylesheet" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/packages/charts/classic/charts.js"></script>
+  <script type="text/javascript">
+	   Ext.onReady(function() {
+		 //移动起点
+		 Ext.create({
+            xtype: 'draw',
+            renderTo: Ext.getBody(),
+            width: 220,
+            height: 220,
+            sprites: [{
+               type: 'rect',
+               height : 200,
+               width: 200,
+               fill: 'red',
+               translate: {
+                  x:10,
+                  y:10
+               }
+            }],
+         });
+		 //绘制圆形
+         Ext.create({
+            xtype: 'draw',
+            sprites: [{
+               type: 'circle',
+               fillStyle: 'red',
+               r: 100,
+               cx: 100,
+               cy: 100
+            }],
+            height:205,
+            width:205,
+            renderTo:Ext.getBody()
+         });
+		//绘制长方形
+         Ext.create('Ext.draw.Component', {
+            sprites: [{
+               type: 'rect',
+               height : 200,
+               width: 600,
+               fill: 'red'
+            }],
+            height:150,
+            width:300,
+            renderTo:Ext.getBody()
+         });
+         //绘制半圆
+		 Ext.create({
+            xtype: 'draw', 
+            renderTo: Ext.getBody(),
+            width: 200,
+            height: 200,
+            sprites: [{
+               type: 'arc',
+               cx: 100,
+               cy: 100,
+               r: 80,
+               fillStyle: '#1F6D91',
+               startAngle: 0,
+               endAngle: Math.PI,
+               anticlockwise: true
+            }]
+         });
+	     //绘制椭圆
+		 Ext.create({
+            xtype: 'draw', 
+            renderTo: Ext.getBody(),
+            width: 200,
+            height: 200,
+            sprites: [{
+               type: 'ellipse',
+               cx: 100,
+               cy: 100,
+               rx: 80,
+               ry: 50,
+               fillStyle: '#1F6D91'
+            }]
+         });
+		 //绘制字体
+		 Ext.create({
+            xtype: 'draw',
+            renderTo: Ext.getBody(),
+            width: 300,
+            height:200,
+            sprites: [{
+               type: 'path',
+               path: 'M150 0 L25 100 L250 100 Z',
+               strokeStyle: '#333',
+               fill: 'green',
+               lineWidth: 2
+            }]
+		 });
+		 //绘制半椭圆
+		 Ext.create({
+            xtype: 'draw', 
+            renderTo: Ext.getBody(),
+            width: 200,
+            height: 200,
+            sprites: [{
+               type: 'ellipticalArc',
+               cx: 100,
+               cy: 100,
+               rx: 80,
+               ry: 50,
+               fillStyle: '#1F6D91',
+               startAngle: 0,
+               endAngle: Math.PI,
+               anticlockwise: true
+            }]
+         });
+		 //绘制字体
+		 Ext.create({
+            xtype: 'draw',
+            renderTo: Ext.getBody(),
+            width: 200,
+            height: 200,
+            sprites: [{
+                type: 'text',
+                x: 2,
+                y: 40,
+                text: 'ExtJS Tutorials',
+                fontSize: 20,
+                fillStyle: 'green'
+            }]
+         });
+		 //图形添加旋转
+		  Ext.create({
+            xtype: 'draw',
+            renderTo: Ext.getBody(),
+            width: 200,
+            height: 200,
+            sprites: [{
+               type: 'rect',
+               height: 100,
+               width: 100,
+               x:50,
+               y:50,
+               fill: 'red',
+               rotate: {
+                  degrees: 45
+               }
+            }],
+         });
+		 //创建正方形
+		 Ext.create({
+            xtype: 'draw',
+            renderTo: Ext.getBody(),
+            width: 300,
+            height:200,
+            sprites: [{
+               type: 'square',
+               height: 100,
+               width: 100,
+               fill: 'green'
+            }]
+         }); 
+      }); 
+	  
+  </script>
+  <style type="text/css">
+	/*通配符选择器 选择页面所有元素 内边距和外边距都设置为0*/
+	*{margin:0px;padding:0px;}
+	/*自主选择标签进行初始化*/
+	body,p,dl,dd,h1,h2,h3,h4,h5,h6{margin:0px;}
+	ul,ol{margin:0px;padding:0px;list-style:none;}
+	a{color:#000;text-decoration:none;}
+	img{border:none;}
+  </style>
+ </head><!--头部-->
+ <body>
+ </body> <!--身体-->
+</html>

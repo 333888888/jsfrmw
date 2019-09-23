@@ -1,0 +1,290 @@
+<!doctype html><!--生成文档类型-->
+<html lang="en">
+ <head>
+  <!--声明当前网页的编码集：charset=gbk,gb2312(中文编码)，utf8国际编码 -->
+  <meta http-equiv="Content-Type" content="texl/html;charset=utf-8" >
+  <meta name="Generator" content="EditPlus®"><!--使用软件-->
+  <meta name="Author" content=""><!--作者-->
+  <!--网页三要素-->
+  <meta name="Keywords" content=""><!--关键词 英文逗号隔开 31字-->
+  <meta name="Description" content=""><!--描述 百度80字以内 标准76字-->
+  <title>html通用模板</title><!--网页标题-->
+  <link href="https://cdn.bootcss.com/extjs/6.0.0/classic/theme-classic/resources/theme-classic-all.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/extjs/6.0.0/ext-all.js"></script>
+  <script type="text/javascript">
+		 // Creation of data model
+      Ext.define('StudentDataModel', {
+         extend: 'Ext.data.Model',
+         fields: [
+         {name: 'name', mapping : 'name'},
+         {name: 'age', mapping : 'age'},
+         {name: 'marks', mapping : 'marks'}
+         ]
+      });
+
+      Ext.onReady(function(){
+         // Store data
+         var myData = [
+            { name : "Asha", age : "16", marks : "90" },
+            { name : "Vinit", age : "18", marks : "95" },
+            { name : "Anand", age : "20", marks : "68" },
+            { name : "Niharika", age : "21", marks : "86" },
+            { name : "Manali", age : "22", marks : "57" }
+         ];
+         // Creation of first grid store
+         var gridStore = Ext.create('Ext.data.Store', {
+         model: 'StudentDataModel',
+         data: myData
+         });
+         // Creation of first grid
+         Ext.create('Ext.grid.Panel', {
+            id                : 'gridId',
+            store             : gridStore,
+            stripeRows        : true,
+            title             : 'Students Grid', // Title for the grid
+            renderTo          :'gridDiv', // Div id where the grid has to be rendered
+            width             : 600,
+            collapsible       : true, // property to collapse grid
+            enableColumnMove  :true, // property which alllows column to move to different position by dragging that column.
+            enableColumnResize:true, // property which allows to resize column run time.
+            columns           :
+               [{ 
+                  header: "Student Name",
+                  dataIndex: 'name',	
+                  id : 'name',    
+                  flex:  1,  		 // property defines the amount of space this column is going to take in the grid container with respect to all.	
+                  sortable: true, // property to sort grid column data. 
+                  hideable: true  // property which allows column to be hidden run time on user request.
+               },{
+                  header: "Age", 
+                  dataIndex: 'age',
+                  flex: .5, 
+                  sortable: true,
+                   hideable: false // this column will not be available to be hidden.
+               },{
+                  header: "Marks",
+                  dataIndex: 'marks',
+                  flex: .5, 
+                  sortable: true, 
+                  // renderer is used to manipulate data based on some conditions here who ever has marks greater than 75 will be displayed as 'Distinction' else 'Non Distinction'.
+                  renderer :  function (value, metadata, record, rowIndex, colIndex, store) {
+                     if (value > 75) {
+                        return "Distinction";	  
+                     } else {
+                        return "Non Distinction";
+                     }
+                  }
+            }]
+         });
+      });
+	  Ext.onReady(function() {
+		  Ext.create('Ext.form.Panel', {
+				id: 'newForm',
+				renderTo: 'formId',
+				border: true,
+				width: 600,
+				items: [{
+				   xtype: 'textfield',
+				   fieldLabel: 'Text Field'
+				},{
+				   xtype: 'displayfield',
+				   fieldLabel: 'Display Field'
+				},{
+				   xtype: 'textarea',
+				   fieldLabel: 'Text Area'
+				},{
+				   xtype: 'datefield',
+				   fieldLabel: 'Date picker'
+				},{
+				   xtype: 'button',
+				   text: 'Button'
+				},{
+				   xtype: 'fieldcontainer',
+				   fieldLabel: 'Radio field',
+				   defaultType: 'radiofield',
+				   defaults: {
+					  flex: 1
+				   },
+				   layout: 'hbox',
+				   items: [{
+					  boxLabel: 'A',
+					  inputValue: 'a',
+					  id: 'radio1'
+				   },{
+					  boxLabel: 'B',
+					  inputValue: 'b',
+					  id: 'radio2'
+				   },{
+					  boxLabel: 'C',
+					  inputValue: 'c',
+					  id: 'radio3'
+				   }]
+				},{
+				   xtype: 'fieldcontainer',
+				   fieldLabel: 'Check Box Field',
+				   defaultType: 'checkboxfield',
+				   items: [{
+					  boxLabel: 'HTML',
+					  inputValue: 'html',
+					  id: 'checkbox1'
+				   },{
+					  boxLabel: 'CSS',
+					  inputValue: 'css',
+					  checked: true,
+					  id: 'checkbox2'
+				   },{
+					  boxLabel: 'JavaScript',
+					  inputValue: 'js',
+					  id: 'checkbox3'
+				   }]
+				},{
+				   xtype: 'hiddenfield',
+				   name: 'hidden field ',
+				   value: 'value from hidden field'
+				},{
+				   xtype: 'numberfield',
+				   anchor: '100%',
+				   fieldLabel: 'Numeric Field',
+				   maxValue: 99,
+				   minValue: 0
+				},{
+				   xtype: 'spinnerfield',
+				   fieldLabel: 'Spinner Field',
+				   step: 6,
+				   // override onSpinUp (using step isn't neccessary)
+				   onSpinUp: function() {
+					 var me = this;
+					 if (!me.readOnly) {
+						 var val = me.step; // set the default value to the step value
+						 if(me.getValue() !== '') {
+							 val = parseInt(me.getValue().slice(0, -5)); // gets rid of " Pack"
+						 }                          
+						 me.setValue((val + me.step) + ' Pack');
+					 }
+				   },
+
+				   // override onSpinDown
+				   onSpinDown: function() {
+					 var me = this;
+					 if (!me.readOnly) {
+						 if(me.getValue() !== '') {
+							 val = parseInt(me.getValue().slice(0, -5)); // gets rid of " Pack"
+						 }            
+						 me.setValue((val - me.step) + ' Pack');
+					 }
+				   }
+				},{
+				   xtype: 'timefield',
+				   fieldLabel: 'Time field',
+				   minValue: '6:00 AM',
+				   maxValue: '8:00 PM',
+				   increment: 30,
+				   anchor: '100%'
+				},{
+				   xtype: 'combobox',
+				   fieldLabel: 'Combo Box',
+				   store: Ext.create('Ext.data.Store', {
+							fields: ['abbr', 'name'],
+							data: [{
+							   'abbr': 'HTML',
+							   'name': 'HTML'
+							},{
+							   'abbr': 'CSS',
+							   'name': 'CSS'
+							},{
+							   'abbr': 'JS',
+							   'name': 'JavaScript'
+							}]
+						 }),
+				   valueField: 'abbr',
+				   displayField: 'name'
+				},{
+				   xtype: 'filefield',
+				   fieldLabel: 'File field',
+				   labelWidth: 50,
+				   msgTarget: 'side',
+				   allowBlank: false,
+				   anchor: '100%',
+				   buttonText: 'Select File...'
+				}]
+			 });
+			  Ext.create('Ext.Button', {
+				renderTo: Ext.getElementById('msgBox'),
+				text: 'Click Me Alert',
+				listeners: {
+				   click: function() {
+					  Ext.Msg.alert('Title', 'Basic message box in ExtJS');
+				   }
+				}
+			 });
+			  Ext.create('Ext.Button', {
+				renderTo: Ext.getElementById('msgBox'),
+				text: 'Click Me Confirm',
+				listeners: {
+				   click: function() {
+					  Ext.MessageBox.confirm('Confirm', 'Are you sure you want to do this ?', callbackFunction);
+					  function callbackFunction(btn){
+					  if(btn == 'yes') {
+						 Ext.Msg.alert ('Button Click', 'You clicked the Yes button');
+					  } else {
+						 Ext.Msg.alert ('Button Click', 'You clicked the No button');
+					  }
+						 
+					  };
+				   }
+				}
+			 });
+			Ext.create('Ext.Button', {
+				renderTo: Ext.getElementById('msgBox'),
+				text: 'Click Me Prompt',
+				listeners: {
+				   click: function() {
+					  Ext.Msg.prompt('Name', 'Please enter your name:', function(btn, text){
+						 if (btn == 'ok'){
+							Ext.Msg.alert('Hello', 'Hello '+text);
+						 }
+					  });
+				   }
+				}
+			 });
+			Ext.create('Ext.Button', {
+				renderTo: Ext.getElementById('msgBox'),
+				text: 'Click Me OKCANCEL',
+				listeners: {
+				   click: function() {
+					  Ext.MessageBox.show({
+						 title: 'Details',
+						 msg: 'Please enter your details:',
+						 width:300,
+						 buttons: Ext.MessageBox.OKCANCEL,
+						 multiline: true,
+						 fn: callbackFunction
+					  });
+
+					  function callbackFunction (){
+						 Ext.Msg.alert('status', 'Details entered succesfully');
+					  }
+				   }
+				}
+			 });
+			
+		});
+  </script>
+  <style type="text/css">
+	/*通配符选择器 选择页面所有元素 内边距和外边距都设置为0*/
+	*{margin:0px;padding:0px;}
+	/*自主选择标签进行初始化*/
+	body,p,dl,dd,h1,h2,h3,h4,h5,h6{margin:0px;}
+	ul,ol{margin:0px;padding:0px;list-style:none;}
+	a{color:#000;text-decoration:none;}
+	img{border:none;}
+  </style>
+ </head><!--头部-->
+ <body>
+      <div id="gridDiv" />
+	  <div id="formId" />
+	  <div id="gridDiv" />
+	  <p> Click the button for alert box </p>
+	  <div id = "msgBox" ></div>
+ </body><!--身体-->
+</html>

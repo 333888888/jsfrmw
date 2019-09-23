@@ -1,0 +1,341 @@
+<!doctype html><!--生成文档类型-->
+<html lang="en">
+ <head>
+  <!--声明当前网页的编码集：charset=gbk,gb2312(中文编码)，utf8国际编码 -->
+  <meta http-equiv="Content-Type" content="texl/html;charset=utf-8" >
+  <meta name="Generator" content="EditPlus®"><!--使用软件-->
+  <meta name="Author" content=""><!--作者-->
+  <!--网页三要素-->
+  <meta name="Keywords" content=""><!--关键词 英文逗号隔开 31字-->
+  <meta name="Description" content=""><!--描述 百度80字以内 标准76字-->
+  <title>html通用模板</title><!--网页标题-->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-classic/resources/theme-classic-all.css" rel="stylesheet" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/packages/charts/classic/charts.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/packages/charts/classic/classic/resources/charts-all.css" rel="stylesheet" />
+  <script type="text/javascript">
+      Ext.application({
+          launch: function() {
+              var images = Ext.get('images').select('img');
+              Ext.each(images.elements, function(el) {
+                  var dd = Ext.create('Ext.dd.DD', el, 'imagesDDGroup', {
+                      isTarget: false
+                  });
+              });
+          }
+       }); 
+      var mainTarget = Ext.create('Ext.dd.DDTarget', 'mainRoom', 'imagesDDGroup', {
+         ignoreSelf: false
+      });
+	  Ext.require([
+         'Ext.grid.*',
+         'Ext.data.*',
+         'Ext.dd.*'
+      ]);
+      // Creation of data model
+      Ext.define('StudentDataModel', {
+         extend: 'Ext.data.Model',
+         fields: [
+         {name: 'name', mapping : 'name'},
+         {name: 'age', mapping : 'age'},
+         {name: 'marks', mapping : 'marks'}
+         ]
+      });
+
+      Ext.onReady(function(){
+         // Store data
+         var myData = [
+            { name : "Asha", age : "16", marks : "90" },
+            { name : "Vinit", age : "18", marks : "95" },
+            { name : "Anand", age : "20", marks : "68" },
+            { name : "Niharika", age : "21", marks : "86" },
+            { name : "Manali", age : "22", marks : "57" }
+         ];
+         // Creation of first grid store
+         var firstGridStore = Ext.create('Ext.data.Store', {
+         model: 'StudentDataModel',
+         data: myData
+         });
+         // Creation of first grid
+         var firstGrid = Ext.create('Ext.grid.Panel', {
+            multiSelect: true,
+            viewConfig: {
+               plugins: {
+                  ptype: 'gridviewdragdrop',
+                  dragGroup: 'firstGridDDGroup',
+                  dropGroup: 'secondGridDDGroup'
+               },
+               listeners: {
+                  drop: function(node, data, dropRec, dropPosition) {
+                     var dropOn = dropRec ? ' ' + dropPosition + ' ' + dropRec.get('name') : ' on empty view';
+                  }
+               }
+            },
+            store            : firstGridStore,
+            columns          :
+               [{ 
+                  header: "Student Name",
+                  dataIndex: 'name',	
+                  id : 'name',    
+                  flex:  1,  			
+               sortable: true
+               },{
+                  header: "Age", 
+                  dataIndex: 'age',
+                  flex: .5, 
+                  sortable: true
+               },{
+                  header: "Marks",
+                  dataIndex: 'marks',
+                  flex: .5, 
+                  sortable: true
+               }],
+            stripeRows       : true,
+            title            : 'First Grid',
+            margins          : '0 2 0 0'
+         });
+         // Creation of second grid store
+         var secondGridStore = Ext.create('Ext.data.Store', {
+            model: 'StudentDataModel'
+         });
+         // Creation of second grid
+         var secondGrid = Ext.create('Ext.grid.Panel', {
+            viewConfig: {
+               plugins: {
+                  ptype: 'gridviewdragdrop',
+                  dragGroup: 'secondGridDDGroup',
+                  dropGroup: 'firstGridDDGroup'
+               },
+               listeners: {
+                  drop: function(node, data, dropRec, dropPosition) {
+                     var dropOn = dropRec ? ' ' + dropPosition + ' ' + dropRec.get('name') : ' on empty view';
+                  }
+               }
+            },
+            store            : secondGridStore,
+            columns          : 
+            [{ 
+               header: "Student Name",
+               dataIndex: 'name',	
+               id : 'name',    
+               flex:  1,  			
+               sortable: true
+            },{
+               header: "Age", 
+               dataIndex: 'age',
+               flex: .5, 
+               sortable: true
+            },{
+               header: "Marks",
+               dataIndex: 'marks',
+               flex: .5, 
+               sortable: true
+            }],
+            stripeRows       : true,
+            title            : 'Second Grid',
+            margins          : '0 0 0 3'
+         });
+         // Creation of a panel to show both the grids.
+         var displayPanel = Ext.create('Ext.Panel', {
+            width        : 600,
+            height       : 200,
+            layout       : {
+               type: 'hbox',
+               align: 'stretch',
+               padding: 5
+            },
+            renderTo     : 'panel',
+            defaults     : { flex : 1 }, 
+            items        : [
+               firstGrid,
+               secondGrid
+            ],
+            dockedItems: {
+               xtype: 'toolbar',
+               dock: 'bottom',
+               items: ['->', 
+               {
+                  text: 'Reset both grids',
+                  handler: function(){
+                     firstGridStore.loadData(myData);
+                     secondGridStore.removeAll();
+                  }
+               }]
+            }
+         });
+      });
+	  Ext.require(['*']);
+      Ext.onReady(function(){
+         // Store data
+         var myData = [
+            { name : "Asha", age : "16", marks : "90" },
+            { name : "Vinit", age : "18", marks : "95" },
+            { name : "Anand", age : "20", marks : "68" },
+            { name : "Niharika", age : "21", marks : "86" },
+            { name : "Manali", age : "22", marks : "57" }
+         ];
+         // Creation of data model
+         Ext.define('StudentDataModel', {
+            extend: 'Ext.data.Model',
+            fields: [
+               {name: 'name', mapping : 'name'},
+               {name: 'age', mapping : 'age'},
+               {name: 'marks', mapping : 'marks'}
+            ]
+         });
+          // Creation of grid store
+         var gridStore = Ext.create('Ext.data.Store', {
+            model  : 'StudentDataModel',
+            data   : myData
+         });
+         // Creation of first grid
+         var grid = Ext.create('Ext.grid.Panel', {
+            viewConfig: {
+               plugins: {
+                  ddGroup: 'GridExample',
+                  ptype: 'gridviewdragdrop',
+                  enableDrop: false
+               }
+            },
+            enableDragDrop   : true,
+            stripeRows       : true,
+            width            : 300,
+            margins          : '0 2 0 0',
+            region           : 'west',
+            title            : 'Student Data Grid',
+            selModel         : Ext.create('Ext.selection.RowModel',{
+               singleSelect : true
+            }),
+            store            : gridStore,
+            columns          : 
+               [{ 
+                  header: "Student Name",
+                  dataIndex: 'name',	
+                  id : 'name',    
+                  flex:  1,  			
+                  sortable: true
+               },{
+                  header: "Age", 
+                  dataIndex: 'age',
+                  flex: .5, 
+                  sortable: true
+               },{
+                  header: "Marks",
+                  dataIndex: 'marks',
+                  flex: .5, 
+                  sortable: true
+               }]
+         });
+         // Creation of form panel
+         var formPanel = Ext.create('Ext.form.Panel', {
+            region     : 'center',
+            title      : 'Generic Form Panel',
+            bodyStyle  : 'padding: 10px; background-color: #DFE8F6',
+            labelWidth : 100,
+            width      : 300,
+            margins    : '0 0 0 3',
+            items      : [{
+               xtype : 'textfield',
+               fieldLabel : 'Student Name',
+               name       : 'name'
+            },{
+               xtype : 'textfield',
+               fieldLabel : 'Age',
+               name       : 'age'
+            },{
+               xtype : 'textfield',
+               fieldLabel : 'Marks',
+               name       : 'marks'
+            }]
+         });
+         // Creation of display panel for showing both grid and form
+         var displayPanel = Ext.create('Ext.Panel', {
+            width    : 600,
+            height   : 200,
+            layout   : 'border',
+            renderTo : 'panel',
+            bodyPadding: '5',
+            items    : [grid, formPanel],
+            bbar    : [
+               '->',
+               {
+               text    : 'Reset',
+               handler : function() {
+                  gridStore.loadData(myData);
+                  formPanel.getForm().reset();
+               }
+            }]
+         });
+
+         var formPanelDropTargetEl =  formPanel.body.dom;
+        //Creation of tager variable for drop.
+         var formPanelDropTarget = Ext.create('Ext.dd.DropTarget', formPanelDropTargetEl, {
+            ddGroup: 'GridExample',
+            notifyEnter: function(ddSource, e, data) {
+               formPanel.body.stopAnimation();
+               formPanel.body.highlight();
+            },
+            notifyDrop  : function(ddSource, e, data){
+               var selectedRecord = ddSource.dragData.records[0];
+               formPanel.getForm().loadRecord(selectedRecord);
+               ddSource.view.store.remove(selectedRecord);
+               return true;
+            }
+         });
+      });
+   </script>
+  <style type="text/css">
+	/*通配符选择器 选择页面所有元素 内边距和外边距都设置为0*/
+	*{margin:0px;padding:0px;}
+	/*自主选择标签进行初始化*/
+	body,p,dl,dd,h1,h2,h3,h4,h5,h6{margin:0px;}
+	ul,ol{margin:0px;padding:0px;list-style:none;}
+	a{color:#000;text-decoration:none;}
+	img{border:none;}
+	 #content{
+		 width:600px;
+		 height:400px;
+		 padding:10px;
+		 border:1px solid #000;
+	  }
+	  #images{
+		 float:left;
+		 width:40%;
+		 height:100%;
+		 border:1px solid Black;
+		 background-color:rgba(222, 222, 222, 1.0);
+	  }
+	  #mainRoom{
+		 float:left;
+		 width:55%;
+		 height:100%;
+		 margin-left:15px;
+		 border:1px solid Black;
+		 background-color:rgba(222, 222, 222, 1.0);
+	  }
+	  .image{   
+		 width:64px;
+		 height:64px;
+		 margin:10px;
+		 cursor:pointer;
+		 border:1px solid Black;
+		 display: inline-block;
+	  }
+  </style>
+ </head><!--头部-->
+ <body>
+	  <div id="content">   
+		  <div id="images"> 
+			 <img src = "images/1.jpg" class = "image" />
+			 <img src = "images/2.jpg" class = "image" />
+			 <img src = "images/3.jpg" class = "image" />
+			 <img src = "images/4.jpg" class = "image" />
+			 <img src = "images/5.jpg" class = "image" />
+			 <img src = "images/6.jpg" class = "image" />
+			 <img src = "images/7.jpg" class = "image" />
+			 <img src = "images/8.jpg" class = "image" />
+		  </div>
+      <div id="mainRoom"></div>
+	  <div id = "panel" > </div>
+ </body><!--身体-->
+</html>
